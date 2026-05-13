@@ -18,7 +18,7 @@ const PI = 3.14159;
 let myName = "Maria";
 console.log("Age in days:", myAge * 365);
 console.log("Age in hours:", myAge *365*24);
-console.log("Year you'll turn 100:", birthyear + 100);
+console.log("Year you'll turn 100:", birthYear + 100);
 let myAge = 25;
 let isStudent = true;
 let favoriteColors = ["blue", "green", "purple"];
