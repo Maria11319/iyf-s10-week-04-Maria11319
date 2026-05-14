@@ -2,7 +2,7 @@ for( let i = 1; i <= 100; i++){
     if (i % 15 === 0) {
         console.log("FizzBuzz");
     }
-}
+}  
 for ( let i = 1; i <= 15; i++){
 
     if (i % 15 === 0) {
@@ -17,5 +17,4 @@ for ( let i = 1; i <= 15; i++){
     } else {
         console.log(i);
     }
-
 }
