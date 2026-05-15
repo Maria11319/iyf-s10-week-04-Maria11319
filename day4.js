@@ -1,19 +1,23 @@
-function findMax(arr) {
-    let max = arr[0];
+document.addEventListener("DOMContentLoaded", () => {
+  const source = document.getElementById("source");
+  const target = document.getElementById("target");
+  const copyBtn = document.getElementById("copyBtn");
 
-    for (let i = 1; i < arr.length; i++) {
-        if (arr[i] > max) {
-            max = arr[i];
-        }
-    }
-    
-    return max;
-}
+  copyBtn.addEventListener("click", () => {
+    target.innerHTML = source.innerHTML;
+  });
 
-console.log(findMax([3, 7, 2, 9, 1]));
-console.log(findMax([-5, -1, -8]));
-console.log(findMax([42]));
+  source.addEventListener("dragstart", (e) => {
+    e.dataTransfer.setData("text/html", source.innerHTML);
+  });
 
+  target.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
 
-    
-
+  target.addEventListener("drop", (e) => {
+    e.preventDefault();
+    const data = e.dataTransfer.getData("text/html");
+    target.innerHTML = data;
+  });
+});

@@ -1,11 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>JS Practice</title>
+  <meta charset="UTF-8">
+  <title>Week 04</title>
+  <style>
+    .highlight {background-color: yellow;}
+    .container {padding: 20px;border: 1px solid #ccc;}
+  </style>
 </head>
 <body>
-    <h1>Check the console!</h1>
-    <script src="main.js"></script>
+  <header id="main-header">
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#" class="nav-link">Home</a></li>
+        <li><a href="#" class="nav-link">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <article>
+      <h2 class="title">Article Title</h2>
+      <p class="content">This is the first paragraph.</p>
+      <p class="content">This is the second paragraph.</p>
+    </article>
+
+    <section>
+      <h2>Form Section</h2>
+      <form id="contact-form">
+        <input type="text" id="name" name="name" placeholder="Name">
+        <input type="email" id="email" name="email" placeholder="Email">
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <!-- Added for Event Delegation exercise -->
+    <section>
+      <h3>Task List</h3>
+      <input type="text" id="taskInput" placeholder="Add a task">
+      <button id="addBtn">Add</button>
+      <ul id="TaskList"></ul>
+    </section>
+
+    <!-- Added for Event Bubbling exercise -->
+    <section>
+      <h3>Bubbling Test</h3>
+      <div id="grandparent" style="padding:20px; background:#ddd;">
+        Grandparent
+        <div id="parent" style="padding:20px; background:#bbb;">
+          Parent
+          <div id="child" style="padding:20px; background:#999; cursor:pointer;">
+            Child - click me
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026</p>
+  </footer>
+  
+  <script src="main.js"></script>
+  <script src="apps.js"></script>
 </body>
 </html>

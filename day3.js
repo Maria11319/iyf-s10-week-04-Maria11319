@@ -1,8 +1,11 @@
-function isPalindrome(str) {
-    let reversed = str.split("").reverse().join("");
-    return str === reversed;
-}   
-
-console.log(isPalindrome("madam")); // true
-console.log(isPalindrome("hello")); // false
-console.log(isPalindrome("racecar")); // true
+document.addEventListener("DOMContentLoaded", () => {
+  let hidden = false;
+  const btn = document.getElementById("toggleImgBtn");
+  
+  btn.addEventListener("click", () => {
+    const images = document.querySelectorAll("img");
+    hidden = !hidden;
+    images.forEach(img => img.classList.toggle("hidden", hidden));
+    btn.textContent = hidden ? "Show Images" : "Hide Images";
+  });
+});

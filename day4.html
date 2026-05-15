@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Day 4: Content Copier</title>
+  <style>
+    .box {
+      border: 2px dashed #ccc;
+      padding: 20px;
+      margin: 10px;
+      min-height: 100px;
+    }
+    #source { background: #f0f0f0; }
+  </style>
+</head>
+<body>
+  <h1>Day 4: Content Copier</h1>
+
+  <div id="source" class="box" draggable="true">
+    <p>This is the source content. Drag me or use the button.</p>
+  </div>
+
+  <button id="copyBtn">Copy to Target</button>
+
+  <div id="target" class="box"></div>
+
+  <script src="day4.js"></script>
+</body>
+</html>

@@ -1,936 +1,391 @@
-// Variable declarations
-let name = "Maria";
-let age = 25;
-const birthYear = 1999;
-let myAge = age;
-console.log("Age in days:", myAge * 365);
-console.log(" Age in hours:", myAge * 365 * 24);
-console.log(" Year you'll turn 100:", birthYear + 100);
+const header = document.getElementById("main-header");
+console.log("1.Header:", header);
 
+const contentParas = document.querySelectorAll(".content");
+console.log("2.Content Paragraphs:", contentParas);
 
-// typeof operator
-console.log(typeof name);    // string
-console.log(typeof age);     // number
-console.log(typeof true);    // boolean
+const form = document.getElementById("contact-form");
+console.log("3.Form:", form);
+const navLinks = document.querySelectorAll(".nav-link");
+navLinks.forEach(link => {
+    link.style.color = "red";
+});
 
-// let vs const
-let score = 100;
-score = 150;  // Works!
+const email = document.getElementById("email");
+console.log("4.Email Input:", email);
 
-const PI = 3.14159;
+const navItems = document.querySelectorAll(".nav-link");
+console.log("navItems:", navItems);
+document.querySelector("#main-header").textContent = "DOM Manipulation Works!";
+header.style.color = "blue";
+contentParas[0].textContent = "I changed this with JavaScript!";
+email.placeholder = "Enter your email here";
+form.style.backgroundColor = "#f0f0f0";
+form.style.padding = "10px";
+const newItem = document.createElement("li");
+const newLink = document.createElement("a");
+newLink.textContent = "Blog";
+newLink.href = "#";
+newLink.localName = "nav-link";
+newLink.style.color = "red";
+newItem.appendChild(newLink); // fixed spelling
 
-// Variable Practice
-let myName = "Maria";
-let isStudent = true;
-let favoriteColors = ["blue", "green", "purple"];
-let today = new Date();
+const target = document.querySelector(".nav-list");
+if (target) {
+  target.appendChild(newItem); // fixed spelling
+} else {
+  console.log("Element not found. Check your selector");
+}
 
-console.log("My name is: " + myName);
-console.log("My age is: " + myAge);
-console.log("Am I a student: " + isStudent);
-console.log("My favorite colors: " + favoriteColors);
-console.log("Today's date: " + today);
+const contactForm = document.querySelector("#contact-form");
+const submitBtn = contactForm.querySelector("button[type='submit']");
+submitBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  alert("Form submitted!");
+});
 
-console.log("=== Task 7.2: Number Operations ===");
+const pageheader = document.querySelector("header");
+const navInsideHeader = pageheader.querySelector("nav"); // fixed variable name
 
+const firstLink = document.querySelector(".nav-link");
 
-let a = 10;
-let b = 3;
+if (firstLink) {
+  const firstLink = document.querySelector(".nav-link");
+  console.log("Task1:", firstLink);
 
-console.log(a + b );
-console.log(a - b );
-console.log(a * b );
-console.log(a / b ); // Division
-console.log(a % b ); // Modulus
-console.log(a ** b ); // Exponentiation
+  if (firstLink) {
+    const parentLi = firstLink.parentElement;
+    console.log("Task2:", parentLi);
+  } else {
+    console.log("No .nav-link found in HTML");
+  }
+}
 
+const footer = document.querySelector("footer");
+if (footer) {
+    const body = footer.parentElement.parentElement;
+    console.log("Task5:", body);
+}
+
+console.log("JS is running!");
+
+const h1 = document.querySelector("h1");
+if (h1) {
+    console.log("Original text content:", h1.textContent);
+    console.log("Original innerText:", h1.innerText);
+    h1.textContent = "New Title";
+}
+
+const article = document.querySelector("article"); // only once
+article.style.backgroundColor = "#f0f0f0";
+article.style.padding = "30px";
+article.style.borderRadius = "8px";
+
+Object.assign(article.style, {
+    backgroundColor: "#333",
+    color: "white",
+    padding: "20px"
+});
+
+console.log("Original HTML:", article.innerHTML);
+
+article.innerHTML = `
+    <h2>Article Title</h2>
+    <p>This is the article content.</p>
+`;
+const userInput = "<script>alert('hack!');</script>";
+article.innerHTML = userInput;
+
+const fIrstNavLink = document.querySelector(".nav-link");
+console.log("First Nav Link:", fIrstNavLink);
+
+const lastParagraph = document.querySelectorAll("p");
+console.log("Last Paragraph:", lastParagraph[lastParagraph.length - 1]);
+
+const ul = document.querySelector(".nav-list");
+if (ul) {
+    const childLis = ul.children;
+    console.log("Task4:", childLis);
+} else {
+    console.log("Task4: nav-list not found");
+}
+
+const links = document.querySelector(".nav-link");
+
+if (firstLink) {
+    // Get attribute
+    console.log(firstLink.getAttribute("href"));
+    console.log(firstLink.href); // Property access
+
+    // Set attribute
+    firstLink.setAttribute("href", "https://example.com");
+    firstLink.href = "https://example.com"; // Same result
+
+    // Check attribute
+    console.log("firstLink.hasAttribute?", firstLink.hasAttribute("target"));
+
+    // Remove attribute
+    firstLink.removeAttribute("target");
+} else {
+    console.log("firstLink not found");
+}
+
+// Data attributes
+// <element data-id="123" data-category="tech">
+const element = document.querySelector("[data-id]");
+if (element) {
+    console.log("Data ID:", element.dataset.id);        // "123"
+    console.log("Data Category:", element.dataset.category);  // "tech"
+    element.dataset.newAttr = "value";      // Creates data-new-attr
+} 
+const newParagraph = document.createElement("p");
+newParagraph.textContent = "This is a new paragraph.";
+newParagraph.className = "content highligt";
+
+const articleSection = document.querySelector("article");
+articleSection.appendChild(newParagraph);
+const pageFooter = document.querySelector("footer");    
+ pageFooter.remove();
+
+const navMenu = document.querySelector("nav");
+if (navMenu) {
+    const lastLink = navMenu.querySelector("li:last-child");
+    if (lastLink) {
+        lastLink.remove();
+    }
+}
+ function addNavItem(text, href) {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.textContent = text;
+    a.href = href;
+    a.className = "nav-link";
+    li.appendChild(a);
+    document.querySelector(".nav-list").appendChild(li);
+}
+
+addNavItem("Blog","/blog");
+addNavItem("Portfolio","/portfolio");
+const button = document.querySelector("button");
+button.textContent = "Click Me";
+document.body.appendChild(button);
+button.addEventListener("click", () => {
+    console.log("Clicked again!");
+
+});
+function handleClick() {
+    console.log("Handled!");
+}
+button.addEventListener("click", handleClick);
+button.removeEventListener("click", handleClick);
+button.addEventListener("Mouseenter", () => {
+    console.log("Mouse entered button");
+    button.style.backgroundColor = "lightblue";
+});
+button.addEventListener("Mouseleave", () => {
+    console.log("Mouse left button");
+    button.style.backgroundColor = "";
+});
+const nameInput = document.querySelector('input[placeholder="Name"]');
+const emailInput = document.querySelector('input[placeholder="Enter your email here"]');
+nameInput.addEventListener("input", () => {
+    console.log("Name input focused");
+});
+nameInput.addEventListener("blur", () => {
+    console.log("Name input lost focus");
+});
+nameInput.addEventListener("input", (e) => {
+    console.log("Typing:", e.target.value);
+});
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log("Form submitted with Name:", nameInput.value, "Email:", emailInput.value);
+});
+const counterContainer = document.createElement("div");
+counterContainer.style.marginTop = "20px";
+counterContainer.style.textAlign = "center";
 
 let count = 0;
-console.log("count starts at:",count);
-count++;
-console.log("After count++:",count);
-count--;
-console.log("After count--:",count);
+const display = document.createElement("h2");
+display.textContent = count;
+display.style.fontSize = "48px";
+display.style.marginBottom = "10px";
 
-function greet(name) {
-    return `Hello, ${name}!`;
-}
-
-console.log(greet("Alex"));
-const greetArrow = (name) => `Hello, ${name}!`;
-console.log(greetArrow("Maria"));
-// Exercise 2 - Build These Functions
-
-function calculateArea(width, height) {
-    return width * height;
-}
-
-function celsiusToFahrenheit(celsius) {
-    return (celsius * 9/5) + 32;
-}
-
-function isEven(number) {
-    return number % 2 === 0;
-}
-
-function getInitials(fullName) {
-    return fullName.split(" ").map(word => word[0]).join("");
-}
-
-function reverseString(str) {
-    return str.split("").reverse().join("");
-}
-
-console.log(calculateArea(5, 10));
-console.log(celsiusToFahrenheit(100));
-console.log(isEven(4));
-console.log(getInitials("John Doe"));
-console.log(reverseString("Maria"));
-function calculateTip(bill, tipPercent = 15) {
-    return bill * (tipPercent / 100);
-}
-
-console.log(calculateTip(100));
-console.log(calculateTip(100, 20));
-function getGrade(score) {
-    if (score >= 90) {
-        return "A";
-    } else if (score >= 80) {
-        return "B";
-    } else if (score >= 70) {
-        return "C";
-    } else if (score >= 60) {
-        return "D";
-    } else {
-        return "F";
+const btnMinus = document.createElement("button");
+btnMinus.textContent = "-";
+btnMinus.style.margin = "5px";
+btnMinus.style.padding = "10px, 20px";
+const btnPlus = document.createElement("button");
+btnPlus.textContent = "+";
+btnPlus.style.margin = "5px";
+btnPlus.style.padding = "10px, 20px";
+const btnReset = document.createElement("button");
+btnReset.textContent = "+";
+btnReset.style.margin = "5px";
+btnReset.style.padding = "10px, 20px";
+btnPlus.addEventListener("click", () => {
+    if (count > 0) {
+        count++;
     }
-}
-console.log(getGrade(95)); // should print A
-console.log(getGrade(82)); // should print B
-console.log(getGrade(73)); // should print C
-console.log(getGrade(65)); // should print D
-console.log(getGrade(50)); // should print F
-function getDayName(dayNumber) {
-    switch(dayNumber) {
-        case 0:
-            return "Sunday";
-        case 1:
-            return "Monday";
-        case 2:
-            return "Tuesday";
-        case 3:
-            return "Wednesday";
-        case 4:
-            return "Thursday";
-        case 5:
-            return "Friday";
-        case 6:
-            return "Saturday";
-        default:
-            return "Invalid day";
+    display.textContent = count;
+});
+btnMinus.addEventListener("click", () => {
+    if (count > 0) {
+        count--;
+
+    display.textContent = count;
     }
-}
-console.log(getDayName(0)); // Sunday 
-console.log(getDayName(3)); // Wednesday
-console.log(getDayName(6)); // Saturday
-console.log(getDayName(7)); // Invalid day
-console.log("--- 1 to 100 ---");
-for (let i = 1; i <= 100; i++) {
-    console.log(i);
-}
-console.log("--- Even numbers from 1 to 50 ---");
-for (let i = 2; i <= 50; i += 2) {
-    console.log(i);
-}
-console.log("--- FizzBuzz from 1 to 15 ---");
-for (let i = 1; i <= 15; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-        console.log("FizzBuzz");
-    } else if (i % 3 === 0) {
-        console.log("Fizz");
-    } else if (i % 5 === 0) {
-        console.log("Buzz");
-    } else {
-        console.log(i);
+});
+btnReset.addEventListener("click", () => {
+    count = 0;
+    display.textContent = count;
+});
+counterContainer.appendChild(display);
+counterContainer.appendChild(btnMinus);
+counterContainer.appendChild(btnPlus);
+counterContainer.appendChild(btnReset);
+document.body.appendChild(counterContainer);
+document.addEventListener("click", function(e) {
+    console.log("Target:", e.target);
+    console.log("Current Target:", e.currentTarget);
+    console.log("Type:", e.type);
+console.log("Position:", e.clientX, e.clientY);
+});
+document.addEventListener("keydown", function(e) {
+    console.log("Key:", e.key);
+    console.log("Code:", e.code);
+    console.log("Alt Key:", e.altKey);
+    console.log("Ctrl Key:", e.ctrlKey);
+    console.log("Shift Key:", e.shiftKey);
+});
+document.addEventListener("keydown", function(e) {
+    const form = document.querySelector("form");
+    const nameInput = document.querySelector('input[placeholder="Name"]');
+    const emailInput = document.querySelector('input[placeholder="Enter your email here"]');
+    if (e.ctrlKey && e.key.toLowerCase() === 's') {
+        e.preventDefault();
+        alert("Saved!");
     }
-}
-console.log("--- Star Triangle ---");
-for (let i = 1; i <= 5; i++) {
-    let stars = "";
-    for (let j = 1; j < i; j++) {
-        stars += "*";
+    if (e.key === "Escape"){
+        nameInput.value = "";
+        emailInput.value = "";  
     }
-    console.log(stars);
-}
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    if (b === 0) {
-        return "Error: Cannot divide by zero";
+    if (e.ctrlKey && e.key === "Enter") {
+        e.preventDefault();
+        if (form) form.requestSubmit();
     }
-    return a / b;
+});
+const el = document.querySelector("#TaskList");
+console.log(el);
+if (el) {
+    el.addEventListener("click", (event) => {
+        console.log("Element clicked:", event.target);
+    });
 }
-
-function calculate(num1, operator, num2) {
-    switch (operator) {
-        case "+":
-            return add(num1, num2);
-        case "-":
-            return subtract(num1, num2);
-        case "*":
-            return multiply(num1, num2);
-        case "/":
-            return divide(num1, num2);
-        case "%":
-            return num1 % num2;
-        case "**":
-            return num1 ** num2;
-        default:    
-            return "Invalid operator";
-    }
-}
-
-// Test
-console.log(calculate(10, "+", 5)); // 15
-console.log(calculate(10, "-", 5)); // 5
-console.log(calculate(10, "*", 5)); // 50
-console.log(calculate(10, "/", 5)); // 2
-console.log(calculate(10, "/", 0)); // Error: Cannot divide by zero
-console.log(calculate(10, "%", 3)); // 1
-console.log(calculate(2, "**", 3)); // 8
-console.log(calculate(10, "^", 5)); // Invalid operator
-console.log("--- Arrays Exercise ---");
-
-// 1. Creating arrays
-let fruits = ["apple", "banana", "orange"];
-let numbers = [1, 2, 3, 4, 5];
-let mixed = ["hello", 42, true,null];
-
-// 2. Accessing elements
-console.log("First fruit:'", fruits[0]); // apple
-console.log("Length of fruits:", fruits.length); // 3
-
-// 3. Modifying arrays
-fruits.push("grape"); // Add to end 'n ["apple", "banana", "orange", "grape"]
-console.log("After push:", fruits);
-
-fruits.unshift("mango"); // Add to start ["mango", "apple", "banana", "orange", "grape"]
-console.log("After unshift:", fruits);
-
-fruits.pop(); // Remove from end ["mango", "apple", "banana", "orange"]
-console.log("After pop:", fruits);  
-
-fruits.shift(); // Remove from start ["apple", "banana", "orange"]
-console.log("After shift:", fruits);
-console.log("--- Array Methods Exercise ---");
-
-const numbers2 = [1, 2, 3, 4, 5];
-
-// 1. Double all numbers in an array 'n use map
-const doubled = numbers.map(num => num * 2);
-console.log("Doubled:", doubled); // [2, 4, 6, 8, 10]
-
-// 2. Filter out negative numbers 'n use filter
-const withNegatives = [-3, 0, 5, -1, 8, 2];
-const positives = withNegatives.filter(num => num >= 0);
-console.log("Positive only:", positives); // [0, 5, 8, 2]
-
-// 3. Find the first number greater than 10 'n use find
-const nums2 = [5, 8, 12, 3, 15];
-const firstBig = nums2.find(num => num > 10);
-console.log("First number > 10:", firstBig); // 12
-
-// 4. Calculate the product of all numbers 'n use reduce
-const product = numbers2.reduce((acc, num) => acc * num, 1);
-console.log("Product:", product); // 120 because 1*2*3*4*5 = 120
-console.log("--- Objects Exercise ---");
-
-// 1. Creating an object
-const person = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
-    isStudent: false,
-    hobbies: ["reading", "gaming", "coding"],
-    address: {
-        city: "New York",
-        Country: "USA"
-    }
-};
-
-// 2. Accessing properties - 2 ways
-console.log("First name:", person.firstName); // Dot notation
-console.log("Last name:", person["lastName"]); // Bracket notation
-console.log("City:", person.address.city); // Nested property
-
-// 3. Modifying properties
-person.age = 31; // Change existing
-person.email = "john.doe@example.com"; // Add new property
-delete person.isStudent; // Remove property
-
-console.log("Updated person object:", person);  
-console.log("--- Object Methods Exercise ---");
-
-const calculator = {
-    // 1. Traditional function syntax
-    add: function(a, b) {
-        return a + b;
-    },
-
-    // 2. Shorthand method syntax - cleaner version
-    subtract(a, b) {
-        return a - b;
-    },
-
-    // 3. Arrow function syntax
-    multiply: (a, b) => a * b,
-};
-
-// Calling the methods
-console.log("Add: 5+ 3", calculator.add(5, 3));
-console.log("Subtract: 10 - 4", calculator.subtract(10, 4));
-console.log("Multiply: 6 * 7", calculator.multiply(6, 7));
-console.log("--- Object Iteration Exercise ---");
-
-const scores = {
-    math: 95,
-    english: 88,
-    science: 92
-};
-
-// 1. Get all keys 'n returns an array of property names
-console.log("Keys:", Object.keys(scores));
- // ["math", "english", "science"]
-
-// 2. Get all values 'n returns an array of  values
-console.log("Values:", Object.values(scores));
-// [95, 88, 92]
-
-// 3. Get all entries 'n returns an array of [key, value] pairs
-console.log("Entries:", Object.entries(scores));
-// [["math", 95], ["english", 88], ["science", 92]]
-
-// 4. Loop through with for...of destructuring
-for (const [subject, score] of Object.entries(scores)) {
-    console.log(`${subject}: ${score}`);
-}
-const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
-const average = total / Object.values(scores).length;
-console.log("Average score:", average);
-console.log("--- Array of Objects Exercise ---");
-
-const students = [
-    { name: "Alice", age: 22, grade: 85, major: "Math" },
-    { name: "Bob", age: 20, grade: 72, major: "Physics" },
-    { name: "Charlie", age: 23, grade: 90, major: "CS" },
-    { name: "Diana", age: 21, grade: 88, major: "Biology" },
-    { name: "Eve", age: 22, grade: 95, major: "CS" }
-];
-
-// Your tasks - use array methods:
-
-// 1. Get all student names
-const names = students.map(student => student.name);
-console.log("1. Names:", names);
-
-// 2. Get students with grade > 80
-const highAchievers = students.filter(student => student.grade > 80);
-console.log("2. Students with grade > 80:", highAchievers);
-
-// 3. Find the student named "Charlie"
-const charlie = students.find(student => student.name === "Charlie");
-console.log("3. Charlie:", charlie);
-
-// 4. Calculate average grade
-const avgGrade = students.reduce((sum, student) => sum + student.grade, 0) / students.length;
-console.log("4. Average grade:", avgGrade.toFixed(2));
-
-// 5. Get CS majors only
-const csMajors = students.filter(student => student.major === "CS");
-console.log("5. CS majors:", csMajors);
-
-// 6. Sort by grade (highest first)
-const sortedByGrade = [...students].sort((a, b) => b.grade - a.grade);
-console.log("6. Sorted by grade:", sortedByGrade);
-
-// 7. Check if any student has grade > 90
-const hasTopStudent = students.some(student => student.grade > 90);
-console.log("7. Has Top Student:", hasTopStudent);
-
-// 8. Check if all students are passing (grade >= 60)
-const allPassing = students.every(student => student.grade >= 60);
-console.log("8. All Passing:", allPassing);
-
-const gradeTracker = {
-    students: [],
+document.getElementById("grandparent").addEventListener("click", () => {
+    console.log("Grandparent clicked");
+});
+document.getElementById("parent").addEventListener("click", () => {
+    console.log("Parent clicked");
     
-    addStudent(name, grades) {
-        const existingStudent = this.getStudent(name);
-        if (existingStudent) {
-            existingStudent.grades = grades;
-            return;
-        }
-        this.students.push({ name, grades });
-    },
+});
+document.getElementById("child").addEventListener("click", () => {
+    console.log("Child clicked");
+
     
-    getStudent(name) {
-        return this.students.find(student => student.name === name) || null;
-    },
-    
-    getStudentAverage(name) {
-        const student = this.getStudent(name);
-        if (!student) return null;
-        const grades = Object.values(student.grades);
-        if (grades.length === 0) return null;
-        return grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
-    },
-    
-    getSubjectAverage(subject) {
-        const grades = this.students
-            .map(student => student.grades[subject])
-            .filter(grade => grade !== undefined);
-        if (grades.length === 0) return null;
-        return grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
-    },
-    
-    // Get top performer
-    getTopStudent() {
-        if (this.students.length === 0) return null;
-        return this.students.reduce((top, student) => {
-            const avg = this.getStudentAverage(student.name);
-            const topAvg = this.getStudentAverage(top.name);
-            return avg > topAvg ? student : top;
-        });     
-    },
-    
-    // Get students needing help (average < 70)
-    getStrugglingStudents() {
-        return this.students.filter(student => {
-            const avg = this.getStudentAverage(student.name);
-            return avg < 70;
-        });
-    },
-    
-    // Get letter grade
-    getLetterGrade(score) {
-        if (score >= 90) return "A";
-        if (score >= 80) return "B";
-        if (score >= 70) return "C";
-        if (score >= 60) return "D";
-        return "F"; 
-    },
-    
-    // Generate report card
-    generateReportCard(name) {
-        const student = this.getStudent(name);
-        if (!student) return `Student ${name} not found.`;
+});
+document.addEventListener("DOMContentLoaded", () => {
+  
+  // 1. Fix the header h1 error
+  const header = document.querySelector("#main-header");
+  if (header) {
+    header.textContent = "DOM Manipulation Works";
+  }
 
-        let report = `Report Card for ${student.name}\n`;
-        report += "--------------------------\n";
+  // 2. Nav items
+  const navItems = document.querySelectorAll(".nav-link");
+  console.log("Nav Items:", navItems);
+  if (navItems.length > 0) {
+    navItems[0].textContent = "Home Updated";
+  }
 
-        for (let subject in student.grades) {
-            const grade = student.grades[subject];
-            const letter = this.getLetterGrade(grade);
-            report += `${subject}: ${grade} (${letter})\n`;
-        }
+  // 3. Task List - this fixes line 32
+  const taskList = document.querySelector("#TaskList");
+  const taskInput = document.querySelector("#taskInput");
+  const addBtn = document.querySelector("#addBtn");
 
-        const avg = this.getStudentAverage(name);
-        if (avg === null) return report + "Average: Not available\n";
-        const avgFormatted = avg.toFixed(2);
-        report += `--------------------------\nAverage: ${avgFormatted} (${this.getLetterGrade(avg)})\n`;
-        return report;
-    }
-};
+  if (taskList && taskInput && addBtn) {
+    addBtn.addEventListener("click", () => {
+      const taskText = taskInput.value.trim();
+      if (taskText!== "") {
+        const li = document.createElement("li");
+        li.textContent = taskText;
+        taskList.appendChild(li);
+        taskInput.value = "";
+      }
+    });
+  } else {
+    console.log("TaskList, taskInput, or addBtn not found");
+  }
 
-// Test your implementation
-gradeTracker.addStudent("Alice", { math: 95, english: 88, science: 92 });
-gradeTracker.addStudent("Bob", { math: 72, english: 85, science: 78 });
-gradeTracker.addStudent("Charlie", { math: 60, english: 65, science: 58 });
+  // 4. Adding to nav-list - this fixes line 32 if you meant the nav
+  const navList = document.querySelector(".nav-list");
+  if (navList) {
+    const newLi = document.createElement("li");
+    newLi.innerHTML = '<a href="#" class="nav-link">Contact</a>';
+    navList.appendChild(newLi);
+  }
 
-const aliceAvg = gradeTracker.getStudentAverage("Alice");
-const safeAliceAvg = aliceAvg ? aliceAvg.toFixed(2) : "Not found";
-console.log("Alice average:", safeAliceAvg);
-const mathAvg = gradeTracker.getSubjectAverage("math");
-const safemathAvg = mathAvg ? mathAvg.toFixed(2) : "Not found";
-console.log("Math average:", safemathAvg);
-console.log("Top student", gradeTracker.getTopStudent());
-console.log("Struggling students",gradeTracker.getStrugglingStudents().map(s => s.name));      
+});
+const taskList = document.getElementById("taskList");
+const taskInput = document.getElementById("taskInput");
+const addBtn = document.getElementById("addBtn");
 
-// Variable declarations
-let name = "Maria";
-let age = 25;
-const birthYear = 1999;
-let myAge = age;
-console.log("Age in days:", myAge * 365);
-console.log(" Age in hours:", myAge * 365 * 24);
-console.log(" Year you'll turn 100:", birthYear + 100);
+// ONE event listener on the parent ul
+taskList.addEventListener("click", function(event) {
 
+  // If delete button clicked — remove the item
+  if (event.target.classList.contains("delete-btn")) {
+    event.target.parentElement.remove();
+  }
 
-// typeof operator
-console.log(typeof name);    // string
-console.log(typeof age);     // number
-console.log(typeof true);    // boolean
+  // If the li itself clicked — toggle completed
+  else if (event.target.tagName === "LI") {
+    event.target.classList.toggle("completed");
+  }
 
-// let vs const
-let score = 100;
-score = 150;  // Works!
+});
 
-const PI = 3.14159;
+// Add new task
+addBtn.addEventListener("click", function() {
+  const text = taskInput.value.trim();
+  if (!text) return;
 
-// Variable Practice
-let myName = "Maria";
-let isStudent = true;
-let favoriteColors = ["blue", "green", "purple"];
-let today = new Date();
-
-console.log("My name is: " + myName);
-console.log("My age is: " + myAge);
-console.log("Am I a student: " + isStudent);
-console.log("My favorite colors: " + favoriteColors);
-console.log("Today's date: " + today);
-
-console.log("=== Task 7.2: Number Operations ===");
-
-
-let a = 10;
-let b = 3;
-
-console.log(a + b );
-console.log(a - b );
-console.log(a * b );
-console.log(a / b ); // Division
-console.log(a % b ); // Modulus
-console.log(a ** b ); // Exponentiation
-
-
-let count = 0;
-console.log("count starts at:",count);
-count++;
-console.log("After count++:",count);
-count--;
-console.log("After count--:",count);
-
-function greet(name) {
-    return `Hello, ${name}!`;
+  const li = document.createElement("li");
+  li.innerHTML = `${text} <button class="delete-btn">Delete</button>`;
+  taskList.appendChild(li);
+  taskInput.value = "";
+}); 
+function showError(input, message) {
+  input.classList.add("error");
+  const errorElement = document.createElement("span");
+  errorElement.className = "error-message";
+  errorElement.textContent = message;
+  input.parentElement.appendChild(errorElement);
 }
-
-console.log(greet("Alex"));
-const greetArrow = (name) => `Hello, ${name}!`;
-console.log(greetArrow("Maria"));
-// Exercise 2 - Build These Functions
-
-function calculateArea(width, height) {
-    return width * height;
+function clearError(input) {
+  input.classList.remove("error");
+  const errorElement = input.parentElement.querySelector(".error-message");
+  if (errorElement) errorElement.remove();
 }
-
-function celsiusToFahrenheit(celsius) {
-    return (celsius * 9/5) + 32;
+function isValid(data) {
+  return data && data.trim().length > 0;
 }
-
-function isEven(number) {
-    return number % 2 === 0;
+function showSuccess(message) {
+  const successElement = document.createElement("div");
+  successElement.className = "success-message";
+  successElement.textContent = message;
+  document.body.appendChild(successElement);
+  setTimeout(() => successElement.remove(), 3000);
 }
-
-function getInitials(fullName) {
-    return fullName.split(" ").map(word => word[0]).join("");
-}
-
-function reverseString(str) {
-    return str.split("").reverse().join("");
-}
-
-console.log(calculateArea(5, 10));
-console.log(celsiusToFahrenheit(100));
-console.log(isEven(4));
-console.log(getInitials("John Doe"));
-console.log(reverseString("Maria"));
-function calculateTip(bill, tipPercent = 15) {
-    return bill * (tipPercent / 100);
-}
-
-console.log(calculateTip(100));
-console.log(calculateTip(100, 20));
-function getGrade(score) {
-    if (score >= 90) {
-        return "A";
-    } else if (score >= 80) {
-        return "B";
-    } else if (score >= 70) {
-        return "C";
-    } else if (score >= 60) {
-        return "D";
-    } else {
-        return "F";
-    }
-}
-console.log(getGrade(95)); // should print A
-console.log(getGrade(82)); // should print B
-console.log(getGrade(73)); // should print C
-console.log(getGrade(65)); // should print D
-console.log(getGrade(50)); // should print F
-function getDayName(dayNumber) {
-    switch(dayNumber) {
-        case 0:
-            return "Sunday";
-        case 1:
-            return "Monday";
-        case 2:
-            return "Tuesday";
-        case 3:
-            return "Wednesday";
-        case 4:
-            return "Thursday";
-        case 5:
-            return "Friday";
-        case 6:
-            return "Saturday";
-        default:
-            return "Invalid day";
-    }
-}
-console.log(getDayName(0)); // Sunday 
-console.log(getDayName(3)); // Wednesday
-console.log(getDayName(6)); // Saturday
-console.log(getDayName(7)); // Invalid day
-console.log("--- 1 to 100 ---");
-for (let i = 1; i <= 100; i++) {
-    console.log(i);
-}
-console.log("--- Even numbers from 1 to 50 ---");
-for (let i = 2; i <= 50; i += 2) {
-    console.log(i);
-}
-console.log("--- FizzBuzz from 1 to 15 ---");
-for (let i = 1; i <= 15; i++) {
-    if (i % 3 === 0 && i % 5 === 0) {
-        console.log("FizzBuzz");
-    } else if (i % 3 === 0) {
-        console.log("Fizz");
-    } else if (i % 5 === 0) {
-        console.log("Buzz");
-    } else {
-        console.log(i);
-    }
-}
-console.log("--- Star Triangle ---");
-for (let i = 1; i <= 5; i++) {
-    let stars = "";
-    for (let j = 1; j < i; j++) {
-        stars += "*";
-    }
-    console.log(stars);
-}
-function add(a, b) {
-    return a + b;
-}
-
-function subtract(a, b) {
-    return a - b;
-}
-
-function multiply(a, b) {
-    return a * b;
-}
-
-function divide(a, b) {
-    if (b === 0) {
-        return "Error: Cannot divide by zero";
-    }
-    return a / b;
-}
-
-function calculate(num1, operator, num2) {
-    switch (operator) {
-        case "+":
-            return add(num1, num2);
-        case "-":
-            return subtract(num1, num2);
-        case "*":
-            return multiply(num1, num2);
-        case "/":
-            return divide(num1, num2);
-        case "%":
-            return num1 % num2;
-        case "**":
-            return num1 ** num2;
-        default:    
-            return "Invalid operator";
-    }
-}
-
-// Test
-console.log(calculate(10, "+", 5)); // 15
-console.log(calculate(10, "-", 5)); // 5
-console.log(calculate(10, "*", 5)); // 50
-console.log(calculate(10, "/", 5)); // 2
-console.log(calculate(10, "/", 0)); // Error: Cannot divide by zero
-console.log(calculate(10, "%", 3)); // 1
-console.log(calculate(2, "**", 3)); // 8
-console.log(calculate(10, "^", 5)); // Invalid operator
-console.log("--- Arrays Exercise ---");
-
-// 1. Creating arrays
-let fruits = ["apple", "banana", "orange"];
-let numbers = [1, 2, 3, 4, 5];
-let mixed = ["hello", 42, true,null];
-
-// 2. Accessing elements
-console.log("First fruit:'", fruits[0]); // apple
-console.log("Length of fruits:", fruits.length); // 3
-
-// 3. Modifying arrays
-fruits.push("grape"); // Add to end 'n ["apple", "banana", "orange", "grape"]
-console.log("After push:", fruits);
-
-fruits.unshift("mango"); // Add to start ["mango", "apple", "banana", "orange", "grape"]
-console.log("After unshift:", fruits);
-
-fruits.pop(); // Remove from end ["mango", "apple", "banana", "orange"]
-console.log("After pop:", fruits);  
-
-fruits.shift(); // Remove from start ["apple", "banana", "orange"]
-console.log("After shift:", fruits);
-console.log("--- Array Methods Exercise ---");
-
-const numbers2 = [1, 2, 3, 4, 5];
-
-// 1. Double all numbers in an array 'n use map
-const doubled = numbers.map(num => num * 2);
-console.log("Doubled:", doubled); // [2, 4, 6, 8, 10]
-
-// 2. Filter out negative numbers 'n use filter
-const withNegatives = [-3, 0, 5, -1, 8, 2];
-const positives = withNegatives.filter(num => num >= 0);
-console.log("Positive only:", positives); // [0, 5, 8, 2]
-
-// 3. Find the first number greater than 10 'n use find
-const nums2 = [5, 8, 12, 3, 15];
-const firstBig = nums2.find(num => num > 10);
-console.log("First number > 10:", firstBig); // 12
-
-// 4. Calculate the product of all numbers 'n use reduce
-const product = numbers2.reduce((acc, num) => acc * num, 1);
-console.log("Product:", product); // 120 because 1*2*3*4*5 = 120
-console.log("--- Objects Exercise ---");
-
-// 1. Creating an object
-const person = {
-    firstName: "John",
-    lastName: "Doe",
-    age: 30,
-    isStudent: false,
-    hobbies: ["reading", "gaming", "coding"],
-    address: {
-        city: "New York",
-        Country: "USA"
-    }
-};
-
-// 2. Accessing properties - 2 ways
-console.log("First name:", person.firstName); // Dot notation
-console.log("Last name:", person["lastName"]); // Bracket notation
-console.log("City:", person.address.city); // Nested property
-
-// 3. Modifying properties
-person.age = 31; // Change existing
-person.email = "john.doe@example.com"; // Add new property
-delete person.isStudent; // Remove property
-
-console.log("Updated person object:", person);  
-console.log("--- Object Methods Exercise ---");
-
-const calculator = {
-    // 1. Traditional function syntax
-    add: function(a, b) {
-        return a + b;
-    },
-
-    // 2. Shorthand method syntax - cleaner version
-    subtract(a, b) {
-        return a - b;
-    },
-
-    // 3. Arrow function syntax
-    multiply: (a, b) => a * b,
-};
-
-// Calling the methods
-console.log("Add: 5+ 3", calculator.add(5, 3));
-console.log("Subtract: 10 - 4", calculator.subtract(10, 4));
-console.log("Multiply: 6 * 7", calculator.multiply(6, 7));
-console.log("--- Object Iteration Exercise ---");
-
-const scores = {
-    math: 95,
-    english: 88,
-    science: 92
-};
-
-// 1. Get all keys 'n returns an array of property names
-console.log("Keys:", Object.keys(scores));
- // ["math", "english", "science"]
-
-// 2. Get all values 'n returns an array of  values
-console.log("Values:", Object.values(scores));
-// [95, 88, 92]
-
-// 3. Get all entries 'n returns an array of [key, value] pairs
-console.log("Entries:", Object.entries(scores));
-// [["math", 95], ["english", 88], ["science", 92]]
-
-// 4. Loop through with for...of destructuring
-for (const [subject, score] of Object.entries(scores)) {
-    console.log(`${subject}: ${score}`);
-}
-const total = Object.values(scores).reduce((sum, score) => sum + score, 0);
-const average = total / Object.values(scores).length;
-console.log("Average score:", average);
-console.log("--- Array of Objects Exercise ---");
-
-const students = [
-    { name: "Alice", age: 22, grade: 85, major: "Math" },
-    { name: "Bob", age: 20, grade: 72, major: "Physics" },
-    { name: "Charlie", age: 23, grade: 90, major: "CS" },
-    { name: "Diana", age: 21, grade: 88, major: "Biology" },
-    { name: "Eve", age: 22, grade: 95, major: "CS" }
-];
-
-// Your tasks - use array methods:
-
-// 1. Get all student names
-const names = students.map(student => student.name);
-console.log("1. Names:", names);
-
-// 2. Get students with grade > 80
-const highAchievers = students.filter(student => student.grade > 80);
-console.log("2. Students with grade > 80:", highAchievers);
-
-// 3. Find the student named "Charlie"
-const charlie = students.find(student => student.name === "Charlie");
-console.log("3. Charlie:", charlie);
-
-// 4. Calculate average grade
-const avgGrade = students.reduce((sum, student) => sum + student.grade, 0) / students.length;
-console.log("4. Average grade:", avgGrade.toFixed(2));
-
-// 5. Get CS majors only
-const csMajors = students.filter(student => student.major === "CS");
-console.log("5. CS majors:", csMajors);
-
-// 6. Sort by grade (highest first)
-const sortedByGrade = [...students].sort((a, b) => b.grade - a.grade);
-console.log("6. Sorted by grade:", sortedByGrade);
-
-// 7. Check if any student has grade > 90
-const hasTopStudent = students.some(student => student.grade > 90);
-console.log("7. Has Top Student:", hasTopStudent);
-
-// 8. Check if all students are passing (grade >= 60)
-const allPassing = students.every(student => student.grade >= 60);
-console.log("8. All Passing:", allPassing);
-
-const gradeTracker = {
-    students: [],
-    
-    addStudent(name, grades) {
-        const existingStudent = this.getStudent(name);
-        if (existingStudent) {
-            existingStudent.grades = grades;
-            return;
-        }
-        this.students.push({ name, grades });
-    },
-    
-    getStudent(name) {
-        return this.students.find(student => student.name === name) || null;
-    },
-    
-    getStudentAverage(name) {
-        const student = this.getStudent(name);
-        if (!student) return null;
-        const grades = Object.values(student.grades);
-        if (grades.length === 0) return null;
-        return grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
-    },
-    
-    getSubjectAverage(subject) {
-        const grades = this.students
-            .map(student => student.grades[subject])
-            .filter(grade => grade !== undefined);
-        if (grades.length === 0) return null;
-        return grades.reduce((sum, grade) => sum + grade, 0) / grades.length;
-    },
-    
-    // Get top performer
-    getTopStudent() {
-        if (this.students.length === 0) return null;
-        return this.students.reduce((top, student) => {
-            const avg = this.getStudentAverage(student.name);
-            const topAvg = this.getStudentAverage(top.name);
-            return avg > topAvg ? student : top;
-        });     
-    },
-    
-    // Get students needing help (average < 70)
-    getStrugglingStudents() {
-        return this.students.filter(student => {
-            const avg = this.getStudentAverage(student.name);
-            return avg < 70;
-        });
-    },
-    
-    // Get letter grade
-    getLetterGrade(score) {
-        if (score >= 90) return "A";
-        if (score >= 80) return "B";
-        if (score >= 70) return "C";
-        if (score >= 60) return "D";
-        return "F"; 
-    },
-    
-    // Generate report card
-    generateReportCard(name) {
-        const student = this.getStudent(name);
-        if (!student) return `Student ${name} not found.`;
-
-        let report = `Report Card for ${student.name}\n`;
-        report += "--------------------------\n";
-
-        for (let subject in student.grades) {
-            const grade = student.grades[subject];
-            const letter = this.getLetterGrade(grade);
-            report += `${subject}: ${grade} (${letter})\n`;
-        }
-
-        const avg = this.getStudentAverage(name);
-        if (avg === null) return report + "Average: Not available\n";
-        const avgFormatted = avg.toFixed(2);
-        report += `--------------------------\nAverage: ${avgFormatted} (${this.getLetterGrade(avg)})\n`;
-        return report;
-    }
-};
-
-// Test your implementation
-gradeTracker.addStudent("Alice", { math: 95, english: 88, science: 92 });
-gradeTracker.addStudent("Bob", { math: 72, english: 85, science: 78 });
-gradeTracker.addStudent("Charlie", { math: 60, english: 65, science: 58 });
-
-const aliceAvg = gradeTracker.getStudentAverage("Alice");
-const safeAliceAvg = aliceAvg ? aliceAvg.toFixed(2) : "Not found";
-console.log("Alice average:", safeAliceAvg);
-const mathAvg = gradeTracker.getSubjectAverage("math");
-const safemathAvg = mathAvg ? mathAvg.toFixed(2) : "Not found";
-console.log("Math average:", safemathAvg);
-console.log("Top student", gradeTracker.getTopStudent());
-console.log("Struggling students",gradeTracker.getStrugglingStudents().map(s => s.name));      
-console.log(gradeTracker.generateReportCard("Alice"));
